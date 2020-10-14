@@ -1,0 +1,111 @@
+.toggle-switch {
+  position: relative;
+  width: 200px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  text-align: left;
+  margin: 0px 8px;
+  &-checkbox {
+    display: none;
+  }
+  &-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0 solid #ccc;
+    border-radius: 32px;
+    margin: 0;
+  }
+  &-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    &:before,
+    &:after {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 50px;
+      padding: 0;
+      font-size: 16px;
+      color: white;
+      font-weight: 500;
+      box-sizing: border-box;
+      padding-top: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+    &:before {
+      content: attr(data-yes);
+      text-transform: uppercase;
+      background-color: #188c10;
+      color: #fff;
+    }
+  }
+  &-disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    &:before {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+  &-inner:after {
+    content: attr(data-no);
+    text-transform: uppercase;
+    padding-right: 10px;
+    background-color: #e86262;
+    color: #fff;
+    text-align: right;
+  }
+  &-switch {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    position: absolute;
+    top: 4px;
+    bottom: 0;
+    right: 155px;
+    border: 0 solid #ccc;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  &-checkbox:checked + &-label {
+    .toggle-switch-inner {
+      margin-left: 0;
+    }
+    .toggle-switch-switch {
+      right: 3px;
+    }
+  }
+  &.small-switch {
+    width: 40px;
+    .toggle-switch-inner {
+      &:after,
+      &:before {
+        content: "";
+        height: 20px;
+        line-height: 20px;
+      }
+    }
+    .toggle-switch-switch {
+      width: 16px;
+      right: 20px;
+      margin: 2px;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    transform: scale(0.9);
+  }
+  @media screen and (max-width: 767px) {
+    transform: scale(0.825);
+  }
+  @media screen and (max-width: 575px) {
+    transform: scale(0.75);
+  }
+}

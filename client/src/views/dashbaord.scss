@@ -1,0 +1,60 @@
+table.log-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #3f4254;
+  background-color: transparent;
+  th,
+  td {
+    border-bottom-width: 1px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+  }
+  th {
+    font-weight: 600;
+    color: #b5b5c3 !important;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+  td {
+    padding: 14px;
+    vertical-align: top;
+    border-top: 1px solid #ebedf3;
+    font-size: 16px;
+    text-align: left;
+  }
+  .available {
+    background: #3e9611;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .not-available {
+    background: #fd1a1a;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+  }
+}
+.add-user {
+  width:500px;
+  text-align:left;
+  margin: 0 auto;
+  .add-form {
+    margin-top: 30px;
+    label{
+      margin-bottom: 10px;
+    }
+    .email-name{
+      padding-top: 2px;
+      font-size: 16px;
+    }
+  }
+}
+
+.toogle-switch{
+  margin-top:50px;
+}
