@@ -1,11 +1,11 @@
 ## I am Available
 
-A small application to let your supervisor know that "Are you available? or not :(
+A small application to let your supervisor know that "Are you available ?" or not :(
 
 ### BIG BROTHER IS WATCHING YOU !!!!!
 
 
-## Contributing
+### Contributing
 
 Please follow the [Contributing](./github/CONTRIBUTING.md) guidelines to open a pull request
 
