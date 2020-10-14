@@ -47,6 +47,7 @@ const BASE_URL = getEnvironMentConfig(process.env.NODE_ENV || DEFAULT_ENV);
  */
 
 const API_ENDPOINTS = {
+  validateUser:'/validateUser',
   users: "/users",
   updateAvailability: "/updateAvailability",
   getAllData: "/getAllData"

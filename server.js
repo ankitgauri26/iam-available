@@ -10,6 +10,7 @@ dotenv.config(); // to pull local configuration from .env file
 const users = require('./routes/users');
 const updateAvailibility = require('./routes/updateAvailability');
 const getAllData = require('./routes/getAllData');
+const validateUser = require('./routes/validateUser');
 
 
 // setup your middlewares here
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/users', users);
 app.use('/updateAvailability', updateAvailibility);
 app.use('/getAllData', getAllData);
+app.use('/validateUser', validateUser);
 
 
 // Serve static files assets on heroku

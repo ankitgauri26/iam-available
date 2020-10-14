@@ -44,16 +44,36 @@ export default function Home() {
     };
 
     if ((userInfo.name, userInfo.email)) {
-      DataService.registerUser(userInfo)
-        .then((resp) => {
-          if (resp && resp.success) {
+
+        // check if user already present is database or not
+        DataService.validateUser(userInfo.email)
+        .then(resp => {
+          if(resp && resp.isUserAlreadyPresent){ // getting back user data stored in db
+            // fetch user data from the db and populate the localStorage
+            const myState = {
+              name: resp.name || '',
+              email: resp.email || '',
+              expertise: resp.expertise || '',
+              isAvailable: resp.isAvailable,
+            };
             setLoggedIn(true);
             localStorage.setItem("myState", JSON.stringify(myState));
+          } else { // if user is not present then register the user
+            DataService.registerUser(userInfo)
+            .then((resp) => {
+              if (resp && resp.success) {
+                setLoggedIn(true);
+                localStorage.setItem("myState", JSON.stringify(myState));
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
+
+
+      
     }
   };
 
@@ -90,7 +110,12 @@ export default function Home() {
             <br></br>
             <br></br>
             <br></br>
-            <p><i>This is an app is built to speed up my assigning time to my fellow developers.<br></br>Feel free to use it</i></p>
+            <p>
+              <i>
+                This is an app is built to speed up my assigning time to my
+                fellow developers.<br></br>Feel free to use it
+              </i>
+            </p>
           </div>
         </div>
       ) : (
@@ -110,13 +135,13 @@ export default function Home() {
                 />
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Your Deloitte Email*</label>
+                <label for="exampleInputPassword1">Your Email*</label>
                 <input
-                      type="email"
-                      className="form-control"
-                      value={userInfo.email}
-                      onChange={handleEmailChange}
-                    />
+                  type="email"
+                  className="form-control"
+                  value={userInfo.email}
+                  onChange={handleEmailChange}
+                />
 
                 <small id="emailHelp" class="form-text text-muted">
                   We'll never share your email with anyone else.
@@ -132,8 +157,10 @@ export default function Home() {
                     <option value="default" selected disabled>
                       Select your expertise
                     </option>
-                    <option value="Front End">Front End</option>
-                    <option value="Back End">Back End</option>
+                    <option value="Front End">Front-End Development</option>
+                    <option value="Back End">Back-End Development</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Business Analyst">Business Analyst</option>
                   </select>
                 </div>
               </div>

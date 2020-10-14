@@ -46,8 +46,21 @@ const getAllData = () => {
 }
 
 
+const validateUser = (email) => {
+    const body = {
+        email
+    }
+    const url = BASE_URL + API_ENDPOINTS.validateUser;
+    return axios.post(url,body)
+    .then(response => {
+        return response.data
+    })
+}
+
+
 
 export default {
+    validateUser,
     registerUser,
     updateAvailability,
     getAllData
