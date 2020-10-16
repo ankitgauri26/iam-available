@@ -1,8 +1,20 @@
 ## I am Available
 
-A small application to let your supervisor know that "Are you available ?" or not :(
 
-### BIG BROTHER IS WATCHING YOU !!!!!
+<div align="center">
+  <a href="#"><img src="" alt="iamavailable logo"></a>
+  <br>
+  <br>
+  <p>
+    <b>A small application to let your supervisor know that "Are you available ?" or not :(
+</b>
+  </p>
+  <p>
+    <sub>Built with ❤︎ by
+      <a href="https://github.com/Rajdeepc">Rajdeep Chandra</a> 
+    </sub>
+  </p>
+</div>
 
 
 ### Contributing
