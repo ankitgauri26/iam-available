@@ -2,11 +2,11 @@
 
 
 <div align="center">
-  <a href="#"><img src="" alt="iamavailable logo"></a>
+  <a href="#"><img src="https://github.com/Rajdeepc/iam-available/blob/master/github/logo.png?raw=true" alt="iamavailable logo"></a>
   <br>
   <br>
   <p>
-    <b>A small application to let your supervisor know that "Are you available ?" or not :(
+    <b>A small application to let your supervisor know that "Are you available or not" :(
 </b>
   </p>
   <p>
