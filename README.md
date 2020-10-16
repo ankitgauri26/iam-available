@@ -16,6 +16,24 @@
   </p>
 </div>
 
+### How it works
+
+A Resource comes to the portal and fills up a short form to let himself into the system
+
+![Signup]("./github/signup")
+
+
+Once the resource signups he/she can update the availability status by clicking on the below switch
+
+![update]("./github/switch")
+
+
+Admin can check which resource is available or not available. Data is auto refreshed every 10 seconds.
+Admin can search for a particular resource also.
+
+![Admin]("./github/admin")
+
+
 
 ### Contributing
 

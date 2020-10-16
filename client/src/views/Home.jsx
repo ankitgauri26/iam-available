@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ToggleSwitch from "../components/Toggle/toggle";
 import DataService from "../utils/services";
+import { mainLogo } from "../assets/images/images";
 
 export default function Home() {
   const [userInfo, setUserInfoItems] = useState({
@@ -44,22 +45,22 @@ export default function Home() {
     };
 
     if ((userInfo.name, userInfo.email)) {
-
-        // check if user already present is database or not
-        DataService.validateUser(userInfo.email)
-        .then(resp => {
-          if(resp && resp.isUserAlreadyPresent){ // getting back user data stored in db
-            // fetch user data from the db and populate the localStorage
-            const myState = {
-              name: resp.name || '',
-              email: resp.email || '',
-              expertise: resp.expertise || '',
-              isAvailable: resp.isAvailable,
-            };
-            setLoggedIn(true);
-            localStorage.setItem("myState", JSON.stringify(myState));
-          } else { // if user is not present then register the user
-            DataService.registerUser(userInfo)
+      // check if user already present is database or not
+      DataService.validateUser(userInfo.email).then((resp) => {
+        if (resp && resp.isUserAlreadyPresent) {
+          // getting back user data stored in db
+          // fetch user data from the db and populate the localStorage
+          const myState = {
+            name: resp.name || "",
+            email: resp.email || "",
+            expertise: resp.expertise || "",
+            isAvailable: resp.isAvailable,
+          };
+          setLoggedIn(true);
+          localStorage.setItem("myState", JSON.stringify(myState));
+        } else {
+          // if user is not present then register the user
+          DataService.registerUser(userInfo)
             .then((resp) => {
               if (resp && resp.success) {
                 setLoggedIn(true);
@@ -69,11 +70,8 @@ export default function Home() {
             .catch((err) => {
               console.log(err);
             });
-          }
-        })
-
-
-      
+        }
+      });
     }
   };
 
@@ -96,9 +94,15 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="container">
+      <div className="header text-center">
+        <div className="logo">
+          <img src={mainLogo} alt="logo" />
+        </div>
+       
+      </div>
       {isLoggedIn ? (
-        <div className="container">
+        <div className="loggedinUser text-center">
           <h1>Hello {userInfo.name}</h1>
           <p>Please click on the switch to change your availability.</p>
           <div className="toogle-switch">
@@ -121,8 +125,8 @@ export default function Home() {
       ) : (
         <div className="container">
           <div className="add-user">
-            <h1>Please add your information</h1>
-            <h3>Trust me this is a one time process.</h3>
+          <h4>Please add your information</h4>
+        <p>Trust me this is a one time process.</p>
             <form noValidate onSubmit={formSubmit} className="add-form">
               <div class="form-group">
                 <label for="exampleInputEmail1">Your Name*</label>
@@ -164,11 +168,11 @@ export default function Home() {
                   </select>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group text-center">
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-success"
+                  className="btn btn-custom"
                 />
               </div>
             </form>
