@@ -50,7 +50,8 @@ const API_ENDPOINTS = {
   validateUser:'/validateUser',
   users: "/users",
   updateAvailability: "/updateAvailability",
-  getAllData: "/getAllData"
+  getAllData: "/getAllData",
+  logoutAndDelete:'/logoutAndDelete'
 };
 
 export { BASE_URL, API_ENDPOINTS };

@@ -4,12 +4,13 @@ import DataService from "../utils/services";
 import { mainLogo } from "../assets/images/images";
 
 export default function Home() {
-  const [userInfo, setUserInfoItems] = useState({
+  const INITIAL_STATE = {
     name: "",
     email: "",
     expertise: "default",
     isAvailable: false,
-  });
+  };
+  const [userInfo, setUserInfoItems] = useState(INITIAL_STATE);
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -46,34 +47,42 @@ export default function Home() {
 
     if ((userInfo.name, userInfo.email)) {
       // check if user already present is database or not
-      DataService.validateUser(userInfo.email).then((resp) => {
-        if (resp && resp.isUserAlreadyPresent) {
-          // getting back user data stored in db
-          // fetch user data from the db and populate the localStorage
-          const myState = {
-            name: resp.name || "",
-            email: resp.email || "",
-            expertise: resp.expertise || "",
-            isAvailable: resp.isAvailable,
-          };
-          setLoggedIn(true);
-          localStorage.setItem("myState", JSON.stringify(myState));
-        } else {
-          // if user is not present then register the user
-          DataService.registerUser(userInfo)
-            .then((resp) => {
-              if (resp && resp.success) {
-                setLoggedIn(true);
-                localStorage.setItem("myState", JSON.stringify(myState));
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+      DataService.validateUser(userInfo.email, userInfo.expertise).then(
+        (resp) => {
+          if (resp && resp.isUserAlreadyPresent && resp.userData) {
+            // getting back user data stored in db
+            // fetch user data from the db and populate the localStorage
+            const myState = {
+              name: resp.userData.name || "",
+              email: resp.userData.email || "",
+              expertise: resp.userData.expertise || "",
+              isAvailable: resp.userData.isAvailable,
+            };
+            setLoggedIn(true);
+            localStorage.setItem("myState", JSON.stringify(myState));
+          } else {
+            // if user is not present then register the user
+            DataService.registerUser(userInfo)
+              .then((resp) => {
+                if (resp && resp.success) {
+                  setLoggedIn(true);
+                  localStorage.setItem("myState", JSON.stringify(myState));
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
         }
-      });
+      );
     }
   };
+
+  /**
+   * @method toggleNotifications
+   * @description method to call when user clicks on swtich
+   * @param {*} e
+   */
 
   const toggleNotifications = (payload) => {
     const myItems = JSON.parse(localStorage.getItem("myState"));
@@ -84,13 +93,45 @@ export default function Home() {
   };
 
   useEffect(() => {
-    DataService.updateAvailability(userInfo)
-      .then((resp) => {})
-      .catch((err) => console.log(err));
-  }, [userInfo.isAvailable]);
+    if (isLoggedIn) {
+      DataService.updateAvailability(userInfo)
+        .then((resp) => {})
+        .catch((err) => console.log(err));
+    }
+  }, [userInfo.isAvailable, isLoggedIn]);
+
+  /**
+   * @method handleExpertiseChange
+   * @description Change the input value of the search box
+   * @param {*} e
+   */
 
   const handleExpertiseChange = (e) => {
     setUserInfoItems({ ...userInfo, expertise: e.target.value });
+  };
+
+  /**
+   * Logout functionality
+   */
+  const logout = () => {
+    DataService.logoutAndDelete(userInfo.email)
+      .then((resp) => {
+        if (resp && resp.success) {
+          clearLoggedInStatus();
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+
+  /**
+   * Clear the loggedin Status
+   */
+  const clearLoggedInStatus = () => {
+    setUserInfoItems(INITIAL_STATE);
+    setLoggedIn(false);
+    localStorage.removeItem("myState");
   };
 
   return (
@@ -99,7 +140,6 @@ export default function Home() {
         <div className="logo">
           <img src={mainLogo} alt="logo" />
         </div>
-       
       </div>
       {isLoggedIn ? (
         <div className="loggedinUser text-center">
@@ -112,6 +152,9 @@ export default function Home() {
               defaultChecked={userInfo.isAvailable}
             />
             <br></br>
+            <a href="#" className="link" onClick={logout}>
+              Logout
+            </a>
             <br></br>
             <br></br>
             <p>
@@ -125,8 +168,8 @@ export default function Home() {
       ) : (
         <div className="container">
           <div className="add-user">
-          <h4>Please add your information</h4>
-        <p>Trust me this is a one time process.</p>
+            <h4>Please add your information</h4>
+            <p>Trust me this is a one time process.</p>
             <form noValidate onSubmit={formSubmit} className="add-form">
               <div class="form-group">
                 <label for="exampleInputEmail1">Your Name*</label>

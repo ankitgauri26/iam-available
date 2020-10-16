@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const userData = await User.findOne({email: req.body.email});
+    const userData = await User.findOne({email: req.body.email, expertise:req.body.expertise });
     if(userData){
         res.status(200).json({isUserAlreadyPresent: true, userData: userData});
     } else{

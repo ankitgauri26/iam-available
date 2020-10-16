@@ -46,9 +46,10 @@ const getAllData = () => {
 }
 
 
-const validateUser = (email) => {
+const validateUser = (email,expertise) => {
     const body = {
-        email
+        email,
+        expertise
     }
     const url = BASE_URL + API_ENDPOINTS.validateUser;
     return axios.post(url,body)
@@ -58,8 +59,21 @@ const validateUser = (email) => {
 }
 
 
+const logoutAndDelete = (email) => {
+    const body ={
+        email
+    }
+    const url = BASE_URL + API_ENDPOINTS.logoutAndDelete;
+    return axios.post(url,body)
+    .then(response => {
+        return response.data
+    })
+}
+
+
 
 export default {
+    logoutAndDelete,
     validateUser,
     registerUser,
     updateAvailability,

@@ -11,6 +11,7 @@ const users = require('./routes/users');
 const updateAvailibility = require('./routes/updateAvailability');
 const getAllData = require('./routes/getAllData');
 const validateUser = require('./routes/validateUser');
+const logoutAndDelete = require('./routes/logoutAndDelete');
 
 
 // setup your middlewares here
@@ -24,6 +25,7 @@ app.use('/users', users);
 app.use('/updateAvailability', updateAvailibility);
 app.use('/getAllData', getAllData);
 app.use('/validateUser', validateUser);
+app.use('/logoutAndDelete', logoutAndDelete);
 
 
 // Serve static files assets on heroku
