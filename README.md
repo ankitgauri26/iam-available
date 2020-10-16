@@ -1,4 +1,3 @@
-## I am Available
 
 <div align="center">
   <a href="#"><img src="https://github.com/Rajdeepc/iam-available/blob/master/github/logo.png?raw=true" alt="iamavailable logo"></a>
@@ -15,7 +14,18 @@
   </p>
 </div>
 
-### How it works
+## See Demo:
+
+[Demo](https://iam-available.herokuapp.com/)
+
+
+## Support My Work:
+
+Click on any of the below links to support:
+
+[GitHub Sponsors](https://github.com/sponsors/Rajdeepc), [Open Collective](https://opencollective.com/rajdeep-chandra), [Patreon](https://www.patreon.com/chandraraj), [PayPal](https://www.paypal.me/RajdeepC)\*\*
+
+## How it works
 
 <div align="center">
   <p>
@@ -50,14 +60,12 @@ Admin can search for a particular resource also.
   </p>
 </div>
 
-### Contributing
+## Contributing
 
 Please follow the [Contributing](./github/CONTRIBUTING.md) guidelines to open a pull request
 
-### License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](./github/LICENSE.md) file for details
 
-### Donate
 
-[GitHub Sponsors](https://github.com/sponsors/Rajdeepc), [Open Collective](https://opencollective.com/rajdeep-chandra), [Patreon](https://www.patreon.com/chandraraj), [PayPal](https://www.paypal.me/RajdeepC)\*\*
