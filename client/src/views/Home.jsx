@@ -151,7 +151,7 @@ export default function Home() {
           <img src={mainLogo} alt="logo" />
         </div>
       </div>
-      {!isLoggedIn ? (
+      {isLoggedIn ? (
         <div className="loggedinUser text-center">
           <h1>Hello {userInfo.name}</h1>
           <p>Please click on the switch to change your availability.</p>
