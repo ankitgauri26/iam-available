@@ -13,11 +13,11 @@
   cursor: pointer;
 
   .modal-container {
-    margin: 30% auto;
+    margin: 15% auto;
     padding: 20px;
     border-radius: 5px;
     background-color: rgb(194, 186, 186);
-    width: 50%;
+    width: 30%;
 
     .modal-body {
       margin: 20px auto;
@@ -53,6 +53,7 @@
   @media screen and (max-width: 575px) {
     .modal-container {
       width: 100%;
+      margin-top: 30%;
     }
   }
 }
