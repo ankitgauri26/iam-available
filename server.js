@@ -34,7 +34,6 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 // MongoDB connection string
-const MONGODB_URI= `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_URI}`;
 const MONGODB_LOCAL = 'mongodb://localhost:27017/updateMyAvailibility';
 
 
