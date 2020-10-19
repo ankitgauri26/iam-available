@@ -14,10 +14,6 @@
   </p>
 </div>
 
-## See Demo:
-
-[Demo](https://iam-available.herokuapp.com/)
-
 
 ## Support My Work:
 
