@@ -39,12 +39,10 @@
         font-weight: 700;
 
         &.yes-button {
-          background-color: rgba(90, 116, 40, 0.2);
           color: rgb(66, 99, 1);
         }
         &.no-button {
-          background-color: rgba(175, 83, 83, 0.2);
-          color: rgb(143, 3, 3);
+          color: #c2baba;
         }
       }
     }
