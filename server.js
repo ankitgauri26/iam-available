@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require("cors");
+const path = require('path');
 const app = express();
 dotenv.config(); // to pull local configuration from .env file
 
@@ -32,6 +33,14 @@ app.use('/logoutAndDelete', logoutAndDelete);
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
 }
+
+
+// PATH CONFIGURATION TO RESPOND TO A REQUEST TO STATIC ROUTE REQUEST BY SERVING index.html
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
 
 // MongoDB connection string
 const MONGODB_LOCAL = 'mongodb://localhost:27017/updateMyAvailibility';
