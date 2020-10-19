@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ToggleSwitch from "../components/Toggle/toggle";
 import DataService from "../utils/services";
 import { mainLogo } from "../assets/images/images";
+import Modal from "../components/Modal/modal"
 
 export default function Home() {
   const INITIAL_STATE = {
@@ -12,6 +13,14 @@ export default function Home() {
   };
   const [userInfo, setUserInfoItems] = useState(INITIAL_STATE);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [showModal, setShowModal] = useState(false)
+
+  const closeModal = () => {
+    setShowModal(false)
+  }
+  const openModal = () => {
+    setShowModal(!showModal)
+  }
 
   useEffect(() => {
     if (localStorage && localStorage.getItem("myState")) {
@@ -123,6 +132,7 @@ export default function Home() {
       .catch((e) => {
         alert(e);
       });
+      closeModal()
   };
 
   /**
@@ -152,9 +162,10 @@ export default function Home() {
               defaultChecked={userInfo.isAvailable}
             />
             <br></br>
-            <a href="#" className="link" onClick={logout}>
+            <a href="#" className="link" onClick={openModal}>
               Logout
             </a>
+            {showModal && <Modal modalMessage="Are you sure you want to logout?" onYes={logout} closeModal={closeModal}/>}
             <br></br>
             <br></br>
             <p>
